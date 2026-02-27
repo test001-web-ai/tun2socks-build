@@ -5,12 +5,10 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        // Android Gradle Plugin المناسب لـ Gradle 6.1.1
         classpath 'com.android.tools.build:gradle:3.5.0'
     }
 }
 
-apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
 repositories {
@@ -19,48 +17,15 @@ repositories {
     mavenCentral()
 }
 
-android {
-    compileSdkVersion 29
-
-    defaultConfig {
-        minSdkVersion 21
-        targetSdkVersion 29
-        versionCode 1
-        versionName "1.0"
-        consumerProguardFiles 'consumer-rules.pro'
-    }
-
-    buildTypes {
-        release {
-            minifyEnabled false
-        }
-    }
-
-    sourceSets {
-        main {
-            jniLibs.srcDirs = ['libs']
-        }
-    }
-}
-
 publishing {
     publications {
         release(MavenPublication) {
             groupId = 'com.github.test001-web-ai'
             artifactId = 'tun2socks-build'
-            version = 'v0.9.5'
+            version = 'v1.0.0'
 
-            // هذا هو ملف AAR الذي سيتم نشره
-            artifact("$buildDir/outputs/aar/${project.name}-release.aar")
+            // ننشر ملف AAR الموجود في مجلد libs مباشرة
+            artifact("libs/tun2socks.aar")
         }
     }
-    repositories {
-        maven {
-            url = uri("$buildDir/repo")
-        }
-    }
-}
-
-dependencies {
-    // لا توجد dependencies إضافية الآن
 }
