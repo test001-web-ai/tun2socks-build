@@ -11,6 +11,7 @@ buildscript {
 }
 
 apply plugin: 'com.android.library'
+apply plugin: 'maven-publish'
 
 android {
     compileSdkVersion 29
@@ -31,8 +32,25 @@ android {
 
     sourceSets {
         main {
-            // هذا يخبر Gradle أن يبحث عن ملف tun2socks.aar داخل مجلد libs
             jniLibs.srcDirs = ['libs']
+        }
+    }
+}
+
+publishing {
+    publications {
+        release(MavenPublication) {
+            groupId = 'com.github.test001-web-ai'
+            artifactId = 'tun2socks-build'
+            version = 'v0.9.4'
+
+            // هذا هو ملف AAR الذي سيتم نشره
+            artifact("$buildDir/outputs/aar/${project.name}-release.aar")
+        }
+    }
+    repositories {
+        maven {
+            url = uri("$buildDir/repo")
         }
     }
 }
