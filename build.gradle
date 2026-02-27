@@ -13,6 +13,12 @@ buildscript {
 apply plugin: 'com.android.library'
 apply plugin: 'maven-publish'
 
+repositories {
+    google()
+    jcenter()
+    mavenCentral()
+}
+
 android {
     compileSdkVersion 29
 
@@ -42,7 +48,7 @@ publishing {
         release(MavenPublication) {
             groupId = 'com.github.test001-web-ai'
             artifactId = 'tun2socks-build'
-            version = 'v0.9.4'
+            version = 'v0.9.5'
 
             // هذا هو ملف AAR الذي سيتم نشره
             artifact("$buildDir/outputs/aar/${project.name}-release.aar")
