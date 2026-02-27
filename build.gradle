@@ -13,10 +13,17 @@ publishing {
         release(MavenPublication) {
             groupId = 'com.github.test001-web-ai'
             artifactId = 'tun2socks-build'
-            version = 'v1.0.1'
+            version = 'v1.0.2'
 
             // ننشر ملف AAR الموجود في مجلد libs مباشرة
             artifact("libs/tun2socks.aar")
         }
+    }
+}
+
+tasks.register('assemble') {
+    // مهمة فارغة فقط لتجاوز خطأ JitPack
+    doLast {
+        println("Assemble task executed - using prebuilt AAR from libs/")
     }
 }
