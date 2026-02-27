@@ -1,3 +1,15 @@
+buildscript {
+    repositories {
+        google()
+        jcenter()
+        mavenCentral()
+    }
+    dependencies {
+        // Android Gradle Plugin المناسب لـ Gradle 6.1.1
+        classpath 'com.android.tools.build:gradle:3.5.0'
+    }
+}
+
 apply plugin: 'com.android.library'
 
 android {
@@ -19,10 +31,12 @@ android {
 
     sourceSets {
         main {
+            // هذا يخبر Gradle أن يبحث عن ملف tun2socks.aar داخل مجلد libs
             jniLibs.srcDirs = ['libs']
         }
     }
 }
 
 dependencies {
+    // لا توجد dependencies إضافية الآن
 }
